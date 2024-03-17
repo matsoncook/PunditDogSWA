@@ -1,0 +1,16 @@
+.content{
+    height: 100%; width: 100%; margin: 10%;background-color: antiquewhite;
+}
+.main{
+    height: 100%; width: 100%; 
+}
+
+.code {
+    width: 100%;
+  }
+  
+/* @media (min-width: 768px) {
+    .code {
+      width: 50%; /* or any appropriate width 
+    }
+} */

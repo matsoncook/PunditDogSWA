@@ -1,17 +1,23 @@
 
-<main class="main">
-  <div class="content">
-    
+<main class="main" >
+  <div class="content" >
+    <div >
+        <mat-form-field appearance="fill">
+            <mat-label>Web Service Address</mat-label>
+            <input [(ngModel)]="webAddress"  matInput placeholder="Example input">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="code">
+            <mat-label>Code</mat-label>
+            <input [(ngModel)]="apiCode"  matInput placeholder="Example input">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="code">
+            <mat-label>Web Call</mat-label>
+            <input [(ngModel)]="webCall"  matInput placeholder="Example input">
+          </mat-form-field>
+    </div>
   </div>
 </main>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 
 <router-outlet />
