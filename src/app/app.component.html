@@ -12,10 +12,15 @@
             <input [(ngModel)]="apiCode"  matInput placeholder="Example input">
           </mat-form-field>
 
-          <mat-form-field appearance="fill" class="code">
+          <mat-form-field appearance="fill" class="webCall">
             <mat-label>Web Call</mat-label>
             <input [(ngModel)]="webCall"  matInput placeholder="Example input">
           </mat-form-field>
+
+          <button mat-raised-button color="primary" (click)="webseviceSubmit()">
+            <mat-icon>send</mat-icon>
+            Submit
+          </button>
     </div>
   </div>
 </main>
