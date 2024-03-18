@@ -60,6 +60,7 @@ export class AppComponent {
       this.isLoading = false;
     }, error => {
       console.error(error);
+      this.webServiceResponse = JSON.stringify(error,null,2);
       this.isLoading = false;
     });
   }
