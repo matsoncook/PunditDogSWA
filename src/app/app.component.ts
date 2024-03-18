@@ -25,7 +25,7 @@ export class AppComponent {
   webAddress = "hello";
   apiCode = "sdfsdfhbfdhbf==";
   //webCall = this.webAddress + "?code=" + this.apiCode;
-  webCall = 'https://www.google.com';
+  webCall = 'xx';
 
   constructor(private http: HttpClient) { }
 
