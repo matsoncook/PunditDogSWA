@@ -21,7 +21,8 @@
             <mat-icon>send</mat-icon>
             Submit
           </button>
-
+      
+          <mat-spinner   *ngIf="isLoading"></mat-spinner>
           <mat-form-field appearance="fill" class="code">
             <mat-label>Response</mat-label>
             <textarea [(ngModel)]="webServiceResponse"  rows=10 matInput placeholder="Example input"></textarea>
