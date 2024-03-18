@@ -1,13 +1,16 @@
-.content{
-    height: 100%; width: 100%; margin: 10%;background-color: antiquewhite;
-}
+
 .main{
     height: 100%; width: 100%; 
 }
 
+.content1{
+    height: 80%; width: 80%; margin: 10%;background-color: antiquewhite;
+}
+
 .code {
-    width: 100%;
-  }
+   width:  80%;
+   margin-left: 10%;
+}
   
 /* @media (min-width: 768px) {
     .code {

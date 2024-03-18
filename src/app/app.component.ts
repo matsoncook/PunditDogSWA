@@ -25,7 +25,9 @@ export class AppComponent {
   webAddress = "hello";
   apiCode = "sdfsdfhbfdhbf==";
   //webCall = this.webAddress + "?code=" + this.apiCode;
-  webCall = 'xx';
+  webCall = '';
+
+  webServiceResponse = "";
 
   constructor(private http: HttpClient) { }
 
@@ -38,6 +40,7 @@ export class AppComponent {
   {
     this.http.get(this.webCall).subscribe(data => {
       console.log(data);
+      this.webServiceResponse = JSON.stringify(data,null,2);
     }, error => {
       console.error(error);
     });

@@ -1,8 +1,8 @@
 
 <main class="main" >
-  <div class="content" >
+  <div class="content1" >
     <div >
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="code">
             <mat-label>Web Service Address</mat-label>
             <input [(ngModel)]="webAddress"  matInput placeholder="Example input">
           </mat-form-field>
@@ -12,7 +12,7 @@
             <input [(ngModel)]="apiCode"  matInput placeholder="Example input">
           </mat-form-field>
 
-          <mat-form-field appearance="fill" class="webCall">
+          <mat-form-field appearance="fill" class="code">
             <mat-label>Web Call</mat-label>
             <input [(ngModel)]="webCall"  matInput placeholder="Example input">
           </mat-form-field>
@@ -21,6 +21,11 @@
             <mat-icon>send</mat-icon>
             Submit
           </button>
+
+          <mat-form-field appearance="fill" class="code">
+            <mat-label>Response</mat-label>
+            <textarea [(ngModel)]="webServiceResponse"  rows=10 matInput placeholder="Example input"></textarea>
+          </mat-form-field>
     </div>
   </div>
 </main>
