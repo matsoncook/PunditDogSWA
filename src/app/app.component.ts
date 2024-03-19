@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule, NgIf} from '@angular/common';
+import { CommonModule,} from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,10 +26,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule,RouterOutlet, MatInputModule, MatFormFieldModule,NgIf,
+  imports: [CommonModule,RouterOutlet, MatInputModule, MatFormFieldModule,
     //BrowserAnimationsModule,
             FormsModule,MatButtonModule,MatIconModule,HttpClientModule,
-            MatProgressSpinnerModule,MatTabsModule,MatListModule,BrowserAnimationsModule,MatSelectModule,MatAutocompleteModule],
+            MatProgressSpinnerModule,MatTabsModule,MatListModule,MatSelectModule,MatAutocompleteModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
