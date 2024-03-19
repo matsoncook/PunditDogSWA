@@ -54,9 +54,14 @@ hello
       </mat-tab>
       <mat-tab label="Teams">
         <form>
-          <!-- Your form content for tab 2 -->
-          <input type="text" placeholder="Field 3">
-          <input type="text" placeholder="Field 4">
+          <mat-list>
+            @for (team of teamList; track team) {
+              <mat-list-item>
+                <h3 mat-line>{{team.teamName}}</h3>
+                <p mat-line>{{team.shortName}}</p>
+              </mat-list-item>
+            }
+          </mat-list>
         </form>
       </mat-tab>
       <mat-tab label="Fixtures">

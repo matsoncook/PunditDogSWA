@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatListModule} from '@angular/material/list';
+import {Team,convertTeamListFromJSON,testTeamList}  from '../model/app.model';
 
 
 
@@ -22,7 +24,7 @@ import { MatTabsModule } from '@angular/material/tabs';
   imports: [RouterOutlet, MatInputModule, MatFormFieldModule,NgIf,
     //BrowserAnimationsModule,
             FormsModule,MatButtonModule,MatIconModule,HttpClientModule,
-            MatProgressSpinnerModule,MatTabsModule],
+            MatProgressSpinnerModule,MatTabsModule,MatListModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -36,9 +38,11 @@ export class AppComponent {
 
   webServiceResponse = "";
 
+  teamList : Array<Team> = [];
   constructor(private http: HttpClient) 
   {
     this.compileWebCall();
+    this.teamList = convertTeamListFromJSON(testTeamList)
   }
 
   onSubmit() {
