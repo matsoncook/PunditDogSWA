@@ -2,9 +2,34 @@
 .main{
     height: 100%; width: 100%; 
 }
+.header-container{
+
+  height: 10%; 
+  //background-color: #24d600; 
+  margin : 1%;
+
+
+}
+.header{
+
+  display: flex; 
+  //background-color: #00bcd4; 
+  justify-content: space-between;
+  
+
+}
+
+.header-left {
+
+}
+
+.header-right {
+   margin-left: auto; /* This will push the item to the right */
+}
+
 
 .content1{
-    height: 80%; width: 80%; margin: 10%;background-color: antiquewhite;
+    height: 80%; width: 80%; margin-left: 10%; background-color: antiquewhite;
 }
 
 .code {

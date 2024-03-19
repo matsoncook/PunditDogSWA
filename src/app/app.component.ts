@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -20,7 +21,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   standalone: true,
   imports: [RouterOutlet, MatInputModule, MatFormFieldModule,NgIf,
     //BrowserAnimationsModule,
-    FormsModule,MatButtonModule,MatIconModule,HttpClientModule,MatProgressSpinnerModule],
+            FormsModule,MatButtonModule,MatIconModule,HttpClientModule,
+            MatProgressSpinnerModule,MatTabsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

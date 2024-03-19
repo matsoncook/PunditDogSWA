@@ -1,41 +1,80 @@
 
 <main class="main" >
-  <div class="content1" >
-    <div >
-        <mat-form-field appearance="fill" class="code">
-            <mat-label>Web Service Address</mat-label>
-            <input [(ngModel)]="webAddress"  matInput placeholder="Example input">
-          </mat-form-field>
+  <div class="header-container" >
+  <div class="header" >
 
-          <mat-form-field appearance="fill" class="code">
-            <mat-label>Code</mat-label>
-            <input [(ngModel)]="apiCode"  matInput placeholder="Example input">
-          </mat-form-field>
+      <div class="header-left">
+hello
+      </div>
+      <div class="header-right">
+         <mat-spinner [diameter]="30"  *ngIf="isLoading"></mat-spinner>
+      </div>
 
-          <mat-form-field appearance="fill" class="code">
-            <mat-label>Web Call</mat-label>
-            <input [(ngModel)]="webCall"  matInput placeholder="Example input">
-          </mat-form-field>
-      
-          <div style="display: flex; align-content:right">
-            <div>
-              <button mat-raised-button color="primary" (click)="webseviceSubmit()">
-                <mat-icon>send</mat-icon>
-                Submit
-              </button>
-            </div>
-            <div>
-               <mat-spinner [diameter]="30"  *ngIf="isLoading"></mat-spinner>
-            </div>
-          </div>
-          
-      
-         
-          <mat-form-field appearance="fill" class="code">
-            <mat-label>Response</mat-label>
-            <textarea [(ngModel)]="webServiceResponse"  rows=10 matInput placeholder="Example input"></textarea>
-          </mat-form-field>
+  </div>
     </div>
+  <div class="content1" >
+    <mat-tab-group>
+      
+      <mat-tab label="API">
+        <div >
+            <mat-form-field appearance="fill" class="code">
+                <mat-label>Web Service Address</mat-label>
+                <input [(ngModel)]="webAddress"  matInput placeholder="Example input">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="code">
+                <mat-label>API Key</mat-label>
+                <input [(ngModel)]="apiCode"  matInput placeholder="Example input">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="code">
+                <mat-label>Web Call</mat-label>
+                <input [(ngModel)]="webCall"  matInput placeholder="Example input">
+              </mat-form-field>
+
+              <div style="display: flex; align-content:right">
+                <div>
+                  <button mat-raised-button color="primary" (click)="webseviceSubmit()">
+                    <mat-icon>send</mat-icon>
+                    Submit
+                  </button>
+                </div>
+                <div>
+
+                </div>
+              </div>
+
+
+
+              <mat-form-field appearance="fill" class="code">
+                <mat-label>Response</mat-label>
+                <textarea [(ngModel)]="webServiceResponse"  rows=10 matInput placeholder="Example input"></textarea>
+              </mat-form-field>
+        </div>
+      </mat-tab>
+      <mat-tab label="Teams">
+        <form>
+          <!-- Your form content for tab 2 -->
+          <input type="text" placeholder="Field 3">
+          <input type="text" placeholder="Field 4">
+        </form>
+      </mat-tab>
+      <mat-tab label="Fixtures">
+        <form>
+          <!-- Your form content for tab 2 -->
+          <input type="text" placeholder="Field 3">
+          <input type="text" placeholder="Field 4">
+        </form>
+      </mat-tab>
+      <mat-tab label="Predictions">
+        <form>
+          <!-- Your form content for tab 2 -->
+          <input type="text" placeholder="Field 3">
+          <input type="text" placeholder="Field 4">
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+
   </div>
 </main>
 
