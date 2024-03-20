@@ -11,15 +11,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule} from '@angular/material/list';
-import {Team,convertTeamListFromJSON,testTeamList,
-        Fixture,convertFixtureListFromJSON,testFixtureList,
-        Prediction,convertPredictionListFromJSON,testPredictionList}  from '../model/app.model';
+import {Team,convertTeamListFromJSON,
+        Fixture,convertFixtureListFromJSON,
+        Prediction,convertPredictionListFromJSON,}  from '../model/app.model';
+import {testTeamList,testFixtureList,testPredictionList} from '../model/testdata';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -31,7 +33,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   imports: [CommonModule,RouterOutlet, MatInputModule, MatFormFieldModule,
     //BrowserAnimationsModule,
             FormsModule,MatButtonModule,MatIconModule,HttpClientModule,
-            MatProgressSpinnerModule,MatTabsModule,MatListModule,MatSelectModule,MatAutocompleteModule],
+            MatProgressSpinnerModule,MatTabsModule,MatListModule,
+            MatSelectModule,MatAutocompleteModule,MatCardModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -83,6 +86,7 @@ export class AppComponent {
   }
   teamListSubmit()
   {
+    this.isLoading = true;
     this.webCall = this.webAddress + "teamlist?code=" + this.apiCode;
     this.http.get(this.webCall).subscribe(data => {
       console.log(data);
@@ -98,11 +102,12 @@ export class AppComponent {
   }
   fixtureListSubmit()
   {
+    this.isLoading = true;
     this.webCall = this.webAddress + "fixturelist?code=" + this.apiCode;
     this.http.get(this.webCall).subscribe(data => {
       console.log(data);
       this.webServiceResponse = JSON.stringify(data,null,2);
-      this.fixtureList = convertFixtureListFromJSON(data)
+      this.fixtureList = convertFixtureListFromJSON(data,this.teamList)
       this.isLoading = false;
     }, error => {
       console.error(error);
@@ -113,17 +118,30 @@ export class AppComponent {
   }
   predictionListSubmit()
   {
+    this.isLoading = true;
     this.webCall = this.webAddress + "predictionlist?code=" + this.apiCode;
+    this.log("Web Service Call: \n" + this.webCall);
+    
     this.http.get(this.webCall).subscribe(data => {
-      console.log(data);
-      this.webServiceResponse = JSON.stringify(data,null,2);
+
+      this.logResponse(JSON.stringify(data,null,2));
       this.predictionList = convertPredictionListFromJSON(data)
       this.isLoading = false;
     }, error => {
-      console.error(error);
-      this.webServiceResponse = JSON.stringify(error,null,2);
+
+      this.log( JSON.stringify(error,null,2));
       this.isLoading = false;
     });
 
+  }
+
+  log(text : string)
+  {
+    this.webServiceResponse += text + "\n";
+  }
+  logResponse(text : string)
+  {
+    this.log("The response is:")
+    this.webServiceResponse += text + "\n";
   }
 }

@@ -20,7 +20,7 @@ export function convertTeamListFromJSON(json:any):Team[]
   return teamList;
 }
 
-export var testTeamList = [{"teamID":1,"teamName":"Man City","shortName":"Man City"},{"teamID":2,"teamName":"Man United","shortName":"Man United"},{"teamID":3,"teamName":"Liverpool","shortName":"Liverpool"},{"teamID":4,"teamName":"Chelsea","shortName":"Chelsea"}];
+
 
 export interface Fixture {
   fixtureID: number;
@@ -36,9 +36,10 @@ export interface Fixture {
   homeOdds: number;
   drawOdds: number;
   awayOdds: number;
+  description: string;
 }
 
-export function convertFixtureListFromJSON(json:any):Fixture[]
+export function convertFixtureListFromJSON(json:any,teamList : Array<Team>):Fixture[]
 {
   let fixtureList:Fixture[] = [];
   for(let i = 0; i < json.length; i++)
@@ -56,13 +57,41 @@ export function convertFixtureListFromJSON(json:any):Fixture[]
       isStarted: json[i].isStarted,
       homeOdds: json[i].homeOdds,
       drawOdds: json[i].drawOdds,
-      awayOdds: json[i].awayOdds
+      awayOdds: json[i].awayOdds,
+      description: "HID: " + json[i].homeTeamID + " AID: " + json[i].awayTeamID
     };
+      
+    
+    createFixtureDescription(fixture,teamList);
+  
     fixtureList.push(fixture);
   }
-  return fixtureList;
+return fixtureList;
+  
 }
-export var testFixtureList = [{"fixtureID":2,"leagueID":1,"homeTeamID":1,"awayTeamID":2,"fixtureDate":"2023-08-08T15:00:00","homeTeamScore":0,"awayTeamScore":0,"fixtureDescription":"Man-yew","isPlayed":0,"isStarted":0,"homeOdds":0,"drawOdds":0,"awayOdds":0},{"fixtureID":3,"leagueID":1,"homeTeamID":3,"awayTeamID":4,"fixtureDate":"2023-08-08T15:00:00","homeTeamScore":0,"awayTeamScore":0,"fixtureDescription":"Liver","isPlayed":0,"isStarted":0,"homeOdds":0,"drawOdds":0,"awayOdds":0}];
+export function createFixtureDescription(fixture:Fixture,teamList : Array<Team>):void
+{
+  let homeTeam:Team  = findTeamById(teamList,fixture.homeTeamID) ;
+  let awayTeam:Team  = findTeamById(teamList,fixture.homeTeamID) ;
+  // let awayTeam:Team | null = teamList.find(x => x.teamID == fixture.awayTeamID);
+  fixture.description = homeTeam.shortName + " vs " + awayTeam + " at " + fixture.fixtureDescription + " on " + fixture.fixtureDate;// + awayTeam.shortName;
+
+}
+
+function findTeamById(teamList:Team[],teamID:number):Team 
+{
+  for(var team  of teamList)
+    {
+      if(team.teamID == teamID)
+      {
+        return team;
+      }
+    }
+  var u : Team = {teamID:0,teamName:"Unknown team",shortName:"Unknown team"};
+  return u;
+  
+}
+
 export interface Prediction {
    predictionID: number;
   leagueID: number;
@@ -86,9 +115,11 @@ export function convertPredictionListFromJSON(json:any):Prediction[]
       homeTeamScore: json[i].homeTeamScore,
       awayTeamScore: json[i].awayTeamScore,
       timeOfSubmission: json[i].timeOfSubmission
+      
     };
     predictionList.push(prediction);
   }
   return predictionList;
 }
-export var testPredictionList= [{"predictionID":1,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":2,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":3,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":4,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":5,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":6,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":7,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":8,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":9,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":10,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":11,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":12,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":13,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":14,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":15,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":16,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null},{"predictionID":17,"leagueID":0,"userID":0,"fixtureID":1,"homeTeamScore":0,"awayTeamScore":0,"timeOfSubmission":null}];
+
+
