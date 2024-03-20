@@ -54,6 +54,12 @@ hello
       </mat-tab>
       <mat-tab label="Teams">
         <form>
+          <div>
+            <button mat-raised-button color="primary" (click)="teamListSubmit()">
+              <mat-icon>send</mat-icon>
+              Team List
+            </button>
+          </div>
           <mat-list>
             @for (team of teamList; track team) {
               <mat-list-item>
@@ -65,6 +71,10 @@ hello
       </mat-tab>
       <mat-tab label="Fixtures">
         <form>
+          <button mat-raised-button color="primary" (click)="fixtureListSubmit()">
+            <mat-icon>send</mat-icon>
+            Fixture List
+          </button>
           <mat-list>
             @for (fixture of fixtureList; track fixture) {
               <mat-list-item>
@@ -76,6 +86,10 @@ hello
       </mat-tab>
       <mat-tab label="Predictions">
         <form>
+          <button mat-raised-button color="primary" (click)="predictionListSubmit()">
+            <mat-icon>send</mat-icon>
+            Prediction List
+          </button>
           <mat-list>
             @for (prediction of predictionList; track prediction) {
               <mat-list-item>

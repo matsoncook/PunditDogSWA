@@ -38,7 +38,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 export class AppComponent {
   isLoading= false;
   title = 'PunditDogSWA';
-  webAddress = "https://punditdogfws.azurewebsites.net/api/HttpExample";
+  webAddress = "https://punditdogfws.azurewebsites.net/api/";
   apiCode = "";
   //webCall = this.webAddress + "?code=" + this.apiCode;
   webCall = "";
@@ -51,9 +51,9 @@ export class AppComponent {
   constructor(private http: HttpClient) 
   {
     this.compileWebCall();
-    this.teamList = convertTeamListFromJSON(testTeamList)
-    this.fixtureList = convertFixtureListFromJSON(testFixtureList)
-    this.predictionList = convertPredictionListFromJSON(testPredictionList)
+    //this.teamList = convertTeamListFromJSON(testTeamList)
+    //this.fixtureList = convertFixtureListFromJSON(testFixtureList)
+    //this.predictionList = convertPredictionListFromJSON(testPredictionList)
   }
 
   onSubmit() {
@@ -80,5 +80,50 @@ export class AppComponent {
       this.webServiceResponse = JSON.stringify(error,null,2);
       this.isLoading = false;
     });
+  }
+  teamListSubmit()
+  {
+    this.webCall = this.webAddress + "teamlist?code=" + this.apiCode;
+    this.http.get(this.webCall).subscribe(data => {
+      console.log(data);
+      this.webServiceResponse = JSON.stringify(data,null,2);
+      this.teamList = convertTeamListFromJSON(data)
+      this.isLoading = false;
+    }, error => {
+      console.error(error);
+      this.webServiceResponse = JSON.stringify(error,null,2);
+      this.isLoading = false;
+    });
+    
+  }
+  fixtureListSubmit()
+  {
+    this.webCall = this.webAddress + "fixturelist?code=" + this.apiCode;
+    this.http.get(this.webCall).subscribe(data => {
+      console.log(data);
+      this.webServiceResponse = JSON.stringify(data,null,2);
+      this.fixtureList = convertFixtureListFromJSON(data)
+      this.isLoading = false;
+    }, error => {
+      console.error(error);
+      this.webServiceResponse = JSON.stringify(error,null,2);
+      this.isLoading = false;
+    });
+
+  }
+  predictionListSubmit()
+  {
+    this.webCall = this.webAddress + "predictionlist?code=" + this.apiCode;
+    this.http.get(this.webCall).subscribe(data => {
+      console.log(data);
+      this.webServiceResponse = JSON.stringify(data,null,2);
+      this.predictionList = convertPredictionListFromJSON(data)
+      this.isLoading = false;
+    }, error => {
+      console.error(error);
+      this.webServiceResponse = JSON.stringify(error,null,2);
+      this.isLoading = false;
+    });
+
   }
 }
