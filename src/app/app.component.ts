@@ -11,7 +11,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule} from '@angular/material/list';
-import {Team,convertTeamListFromJSON,testTeamList}  from '../model/app.model';
+import {Team,convertTeamListFromJSON,testTeamList,
+        Fixture,convertFixtureListFromJSON,testFixtureList,
+        Prediction,convertPredictionListFromJSON,testPredictionList}  from '../model/app.model';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
@@ -44,10 +46,14 @@ export class AppComponent {
   webServiceResponse = "";
 
   teamList : Array<Team> = [];
+  fixtureList : Array<Fixture> = [];
+  predictionList : Array<Prediction> = [];
   constructor(private http: HttpClient) 
   {
     this.compileWebCall();
     this.teamList = convertTeamListFromJSON(testTeamList)
+    this.fixtureList = convertFixtureListFromJSON(testFixtureList)
+    this.predictionList = convertPredictionListFromJSON(testPredictionList)
   }
 
   onSubmit() {

@@ -57,8 +57,7 @@ hello
           <mat-list>
             @for (team of teamList; track team) {
               <mat-list-item>
-                <h3 mat-line>{{team.teamName}}</h3>
-                <p mat-line>{{team.shortName}}</p>
+                <p mat-line>{{team.teamName}} - {{team.shortName}}</p>
               </mat-list-item>
             }
           </mat-list>
@@ -66,21 +65,25 @@ hello
       </mat-tab>
       <mat-tab label="Fixtures">
         <form>
-          <!-- Your form content for tab 2 -->
-          <input type="text" placeholder="Field 3">
-          <input type="text" placeholder="Field 4">
+          <mat-list>
+            @for (fixture of fixtureList; track fixture) {
+              <mat-list-item>
+                <p mat-line>{{fixture.homeTeamID}} - {{fixture.awayTeamID}} - {{fixture.fixtureDate}}</p>
+              </mat-list-item>
+            }
+          </mat-list>
         </form>
       </mat-tab>
       <mat-tab label="Predictions">
-        <mat-form-field appearance="fill">
-          <mat-label>Choose an option</mat-label>
-          <input type="text" matInput [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of teamList" [value]="option">
-              {{ option }}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
+        <form>
+          <mat-list>
+            @for (prediction of predictionList; track prediction) {
+              <mat-list-item>
+                <p mat-line>{{prediction.fixtureID}} {{prediction.homeTeamScore}} - {{prediction.awayTeamScore}}</p>
+              </mat-list-item>
+            }
+          </mat-list>
+        </form>
       </mat-tab>
       <mat-tab label="Predict">
         </mat-tab>  
