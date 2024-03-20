@@ -134,6 +134,23 @@ export class AppComponent {
     });
 
   }
+  predictSubmit()
+  {
+    this.isLoading = true;
+    this.webCall = this.webAddress + "predictionadd?code=" + this.apiCode;
+    this.log("Web Service Call: \n" + this.webCall);
+    
+    this.http.get(this.webCall).subscribe(data => {
+
+      this.logResponse(JSON.stringify(data,null,2));
+      this.isLoading = false;
+    }, error => {
+
+      this.log( JSON.stringify(error,null,2));
+      this.isLoading = false;
+    });
+
+  }
 
   log(text : string)
   {

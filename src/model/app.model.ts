@@ -72,9 +72,9 @@ return fixtureList;
 export function createFixtureDescription(fixture:Fixture,teamList : Array<Team>):void
 {
   let homeTeam:Team  = findTeamById(teamList,fixture.homeTeamID) ;
-  let awayTeam:Team  = findTeamById(teamList,fixture.homeTeamID) ;
+  let awayTeam:Team  = findTeamById(teamList,fixture.awayTeamID) ;
   // let awayTeam:Team | null = teamList.find(x => x.teamID == fixture.awayTeamID);
-  fixture.description = homeTeam.shortName + " vs " + awayTeam + " at " + fixture.fixtureDescription + " on " + fixture.fixtureDate;// + awayTeam.shortName;
+  fixture.description = homeTeam.shortName + " vs " + awayTeam.shortName + " at " + fixture.fixtureDescription + " on " + fixture.fixtureDate;// + awayTeam.shortName;
 
 }
 
