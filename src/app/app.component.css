@@ -42,3 +42,24 @@
       width: 50%; /* or any appropriate width 
     }
 } */
+
+.sub-header{
+
+  display: flex; 
+  //background-color: #00bcd4; 
+  justify-content: space-between;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+
+
+}
+
+.sub-header-left {
+
+}
+
+.sub-header-right {
+   margin-left: auto; /* This will push the item to the right */
+}
