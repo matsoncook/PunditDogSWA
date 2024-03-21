@@ -13,7 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule} from '@angular/material/list';
 import {Team,convertTeamListFromJSON,
         Fixture,convertFixtureListFromJSON,
-        Prediction,convertPredictionListFromJSON,}  from '../model/app.model';
+        Prediction,convertPredictionListFromJSON, emptyFixture,}  from '../model/app.model';
 import {testTeamList,testFixtureList,testPredictionList} from '../model/testdata';
 
 
@@ -31,6 +31,7 @@ import { MatCardModule } from '@angular/material/card';
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule,RouterOutlet, MatInputModule, MatFormFieldModule,
+            
     //BrowserAnimationsModule,
             FormsModule,MatButtonModule,MatIconModule,HttpClientModule,
             MatProgressSpinnerModule,MatTabsModule,MatListModule,
@@ -45,17 +46,33 @@ export class AppComponent {
   apiCode = "";
   //webCall = this.webAddress + "?code=" + this.apiCode;
   webCall = "";
-
   webServiceResponse = "";
 
+  //######################################################################
+
+  selectedOption: Fixture = emptyFixture;
+ 
+
+  onOptionSelected(value: Fixture) {
+    console.log('Selected:', value);
+    //this.selectedOption = value;
+  }
+  displayFn(fixture: Fixture): string {
+    return fixture && fixture.description ? fixture.description : '';
+  }
+
+  homeTeamScore = 0;
+  awayTeamScore = 0;
+  //######################################################################
+  
   teamList : Array<Team> = [];
   fixtureList : Array<Fixture> = [];
   predictionList : Array<Prediction> = [];
   constructor(private http: HttpClient) 
   {
     this.compileWebCall();
-    //this.teamList = convertTeamListFromJSON(testTeamList)
-    //this.fixtureList = convertFixtureListFromJSON(testFixtureList)
+    this.teamList = convertTeamListFromJSON(testTeamList)
+    this.fixtureList = convertFixtureListFromJSON(testFixtureList,this.teamList)
     //this.predictionList = convertPredictionListFromJSON(testPredictionList)
   }
 
@@ -138,6 +155,7 @@ export class AppComponent {
   {
     this.isLoading = true;
     this.webCall = this.webAddress + "predictionadd?code=" + this.apiCode;
+    this.webCall += "&HomeTeamScore=" + this.homeTeamScore + "&AwayTeamScore=" + this.awayTeamScore + "&FixtureID=" + this.selectedOption.fixtureID;
     this.log("Web Service Call: \n" + this.webCall);
     
     this.http.get(this.webCall).subscribe(data => {

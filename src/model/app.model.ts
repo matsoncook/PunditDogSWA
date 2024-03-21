@@ -122,4 +122,25 @@ export function convertPredictionListFromJSON(json:any):Prediction[]
   return predictionList;
 }
 
+export var emptyFixture : Fixture = {
+  fixtureID: 0,
+  leagueID: 0,
+  homeTeamID: 0,
+  awayTeamID: 0,
+  fixtureDate: "",
+  homeTeamScore: 0,
+  awayTeamScore: 0,
+  fixtureDescription: "",
+  isPlayed: 0,
+  isStarted: 0,
+  homeOdds: 0,
+  drawOdds: 0,
+  awayOdds: 0,
+  description: ""
+}
+export var emptyTeam : Team = {
+  teamID: 0,
+  teamName: "Unknown Team",
+  shortName: "Unknown"
+}
 

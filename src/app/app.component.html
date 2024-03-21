@@ -88,11 +88,44 @@ Stephenson-Cook Webservice.
         </form>
       </mat-tab>
       <mat-tab label="Predict">
+        <div>
         <button mat-raised-button color="primary" (click)="predictSubmit()">
           <mat-icon>send</mat-icon>
           Predict
         </button>
-        
+
+          </div>
+
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Choose an option</mat-label>
+            <input matInput
+
+                   [matAutocomplete]="auto"
+                   [(ngModel)]="selectedOption"
+                   [ngModelOptions]="{standalone: true}"
+                   (ngModelChange)="onOptionSelected($event)">
+            {{ selectedOption.description  }}
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option *ngFor="let option of fixtureList" [value]="option">
+                {{ option.description  }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          </div>
+
+        <div>
+          <mat-form-field appearance="fill" class="code">
+            <mat-label>Home Team Score</mat-label>
+            <input [(ngModel)]="homeTeamScore"  matInput placeholder="Home Team Score" type="number">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" class="code">
+            <mat-label>Away Team Score</mat-label>
+            <input [(ngModel)]="awayTeamScore"  matInput placeholder="Enter an integer only" type="number">
+          </mat-form-field>
+        </div>
         </mat-tab>  
     </mat-tab-group>
 
