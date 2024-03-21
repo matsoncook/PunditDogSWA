@@ -154,8 +154,9 @@ export class AppComponent {
   predictSubmit()
   {
     this.isLoading = true;
-    this.webCall = this.webAddress + "predictionadd?code=" + this.apiCode;
-    this.webCall += "&HomeTeamScore=" + this.homeTeamScore + "&AwayTeamScore=" + this.awayTeamScore + "&FixtureID=" + this.selectedOption.fixtureID;
+    this.webCall = this.webAddress + "predictionadd";
+    this.webCall += "?HomeTeamScore=" + this.homeTeamScore + "&AwayTeamScore=" + this.awayTeamScore + "&FixtureID=" + this.selectedOption.fixtureID;
+    this.webCall += "&code=" + this.apiCode
     this.log("Web Service Call: \n" + this.webCall);
     
     this.http.get(this.webCall).subscribe(data => {
