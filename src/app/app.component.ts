@@ -9,6 +9,7 @@ import { HttpClientModule,HttpClient } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule} from '@angular/material/list';
 import {Team,convertTeamListFromJSON,
@@ -47,6 +48,11 @@ export class AppComponent {
   //webCall = this.webAddress + "?code=" + this.apiCode;
   webCall = "";
   webServiceResponse = "";
+
+  responseShortText = "";
+
+  doneCorrect = false;
+  doneError = false;
 
   //######################################################################
 
@@ -164,11 +170,33 @@ export class AppComponent {
       this.logResponse(JSON.stringify(data,null,2));
       this.isLoading = false;
     }, error => {
-
+      this.doneCorrect = true;
       this.log( JSON.stringify(error,null,2));
       this.isLoading = false;
+      this.responseShortText = "Error: " + error.status + " " + error.statusText;
+      if(error.status == 401)
+      {
+        this.responseShortText += ". Have you entered your API Key?";
+      }
+      this.clearIndicatorsTimer();
+
     });
 
+  }
+  clearIndicators()
+  {
+    this.responseShortText = "";
+    this.doneCorrect = false;
+    this.doneError = false;
+  }
+  clearIndicatorsTimer()
+  {
+    setTimeout(()=>{
+      this.responseShortText = "";
+      this.doneCorrect = false;
+      this.doneError = false;
+    },5000);
+    
   }
 
   log(text : string)

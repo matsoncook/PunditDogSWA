@@ -90,14 +90,25 @@ Stephenson-Cook Webservice.
       <mat-tab label="Predict">
         <div class="sub-header">
           <div class="sub-header-left">
-
+              {{responseShortText}}
           </div>
           <div class="sub-header-right">
+            <button mat-button color="primary">
+             <mat-progress-spinner *ngIf="isLoading" diameter="20"></mat-progress-spinner>
+               </button>
+            <button mat-button color="primary"> 
+              <mat-icon *ngIf="doneCorrect" class="done-icon">done</mat-icon>                      </button>
+           
+          </div>
+          <div class="sub-header-right">
+           
             <button mat-raised-button color="primary" (click)="predictSubmit()" type="submit" [disabled]="isLoading" >
-              <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
-              <mat-icon *ngIf="!isLoading">send</mat-icon>
-
-              Predict
+              <div style="display: flex; align-items: center; justify-content: center;">
+                <mat-icon *ngIf="!isLoading">send</mat-icon>
+                <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+  
+                <span>Predict</span>
+              </div>
             </button>
           </div>
         </div>
