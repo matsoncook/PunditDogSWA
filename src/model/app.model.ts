@@ -37,6 +37,7 @@ export interface Fixture {
   drawOdds: number;
   awayOdds: number;
   description: string;
+  shortDescription: string;
 }
 
 export function convertFixtureListFromJSON(json:any,teamList : Array<Team>):Fixture[]
@@ -58,7 +59,8 @@ export function convertFixtureListFromJSON(json:any,teamList : Array<Team>):Fixt
       homeOdds: json[i].homeOdds,
       drawOdds: json[i].drawOdds,
       awayOdds: json[i].awayOdds,
-      description: "HID: " + json[i].homeTeamID + " AID: " + json[i].awayTeamID
+      description: "HID: " + json[i].homeTeamID + " AID: " + json[i].awayTeamID,
+      shortDescription: "HID: " + json[i].homeTeamID + " AID: " + json[i].awayTeamID
     };
       
     
@@ -74,8 +76,9 @@ export function createFixtureDescription(fixture:Fixture,teamList : Array<Team>)
   let homeTeam:Team  = findTeamById(teamList,fixture.homeTeamID) ;
   let awayTeam:Team  = findTeamById(teamList,fixture.awayTeamID) ;
   // let awayTeam:Team | null = teamList.find(x => x.teamID == fixture.awayTeamID);
-  fixture.description = homeTeam.shortName + " vs " + awayTeam.shortName + " at " + fixture.fixtureDescription + " on " + fixture.fixtureDate;// + awayTeam.shortName;
-
+  fixture.description = homeTeam.shortName + " vs " + awayTeam.shortName + " at " + 
+  fixture.fixtureDescription + " on " + fixture.fixtureDate;// + awayTeam.shortName;
+  fixture.shortDescription = homeTeam.shortName + " vs " + awayTeam.shortName;
 }
 
 function findTeamById(teamList:Team[],teamID:number):Team 
@@ -100,6 +103,8 @@ export interface Prediction {
   homeTeamScore: number;
   awayTeamScore: number;
   timeOfSubmission: string;
+  description: string;
+  shortDescription: string;
 }
 
 export function convertPredictionListFromJSON(json:any):Prediction[]
@@ -114,7 +119,9 @@ export function convertPredictionListFromJSON(json:any):Prediction[]
       fixtureID: json[i].fixtureID,
       homeTeamScore: json[i].homeTeamScore,
       awayTeamScore: json[i].awayTeamScore,
-      timeOfSubmission: json[i].timeOfSubmission
+      timeOfSubmission: json[i].timeOfSubmission,
+      description: "",
+      shortDescription:""
       
     };
     predictionList.push(prediction);
@@ -136,7 +143,8 @@ export var emptyFixture : Fixture = {
   homeOdds: 0,
   drawOdds: 0,
   awayOdds: 0,
-  description: ""
+  description: "",
+  shortDescription: ""
 }
 export var emptyTeam : Team = {
   teamID: 0,

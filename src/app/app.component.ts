@@ -77,8 +77,8 @@ export class AppComponent {
   constructor(private http: HttpClient) 
   {
     this.compileWebCall();
-    this.teamList = convertTeamListFromJSON(testTeamList)
-    this.fixtureList = convertFixtureListFromJSON(testFixtureList,this.teamList)
+    //this.teamList = convertTeamListFromJSON(testTeamList)
+    //this.fixtureList = convertFixtureListFromJSON(testFixtureList,this.teamList)
     //this.predictionList = convertPredictionListFromJSON(testPredictionList)
   }
 

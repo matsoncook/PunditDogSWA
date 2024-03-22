@@ -68,3 +68,18 @@
     color: green; /* Sets the color */
     /* font-size: 48px; /* Sets the size */ */
 }
+
+.submit-button
+{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.submit-button mat-spinner{
+  width: 20px; /* Adjust the size as needed */
+  height: 20px; /* Adjust the size as needed */
+  transform: scale(0.5); /* Scale down the spinner to fit the button */
+  margin-right: 5px; /* Add some margin to the right of the spinner */
+}

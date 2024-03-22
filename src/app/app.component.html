@@ -102,7 +102,7 @@ Stephenson-Cook Webservice.
           </div>
           <div class="sub-header-right">
            
-            <button mat-raised-button color="primary" (click)="predictSubmit()" type="submit" [disabled]="isLoading" >
+           <button mat-raised-button color="primary" (click)="predictSubmit()" type="submit" [disabled]="isLoading" >
               <div style="display: flex; align-items: center; justify-content: center;">
                 <mat-icon *ngIf="!isLoading">send</mat-icon>
                 <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
