@@ -81,7 +81,7 @@ Stephenson-Cook Webservice.
           <mat-list>
             @for (prediction of predictionList; track prediction) {
               <mat-list-item>
-                <p mat-line>{{prediction.fixtureID}} {{prediction.homeTeamScore}} - {{prediction.awayTeamScore}}</p>
+                <p mat-line>{{prediction.shortDescription}}</p>
               </mat-list-item>
             }
           </mat-list>

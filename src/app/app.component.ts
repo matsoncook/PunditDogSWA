@@ -77,9 +77,9 @@ export class AppComponent {
   constructor(private http: HttpClient) 
   {
     this.compileWebCall();
-    //this.teamList = convertTeamListFromJSON(testTeamList)
-    //this.fixtureList = convertFixtureListFromJSON(testFixtureList,this.teamList)
-    //this.predictionList = convertPredictionListFromJSON(testPredictionList)
+    this.teamList = convertTeamListFromJSON(testTeamList)
+    this.fixtureList = convertFixtureListFromJSON(testFixtureList,this.teamList)
+    this.predictionList = convertPredictionListFromJSON(testPredictionList,this.fixtureList)
   }
 
   onSubmit() {
@@ -148,7 +148,7 @@ export class AppComponent {
     this.http.get(this.webCall).subscribe(data => {
 
       this.logResponse(JSON.stringify(data,null,2));
-      this.predictionList = convertPredictionListFromJSON(data)
+      this.predictionList = convertPredictionListFromJSON(data,this.fixtureList)
       this.isLoading = false;
     }, error => {
 

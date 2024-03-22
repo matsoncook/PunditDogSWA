@@ -107,7 +107,7 @@ export interface Prediction {
   shortDescription: string;
 }
 
-export function convertPredictionListFromJSON(json:any):Prediction[]
+export function convertPredictionListFromJSON(json:any,fixtureList : Array<Fixture>):Prediction[]
 {
   let predictionList:Prediction[] = [];
   for(let i = 0; i < json.length; i++)
@@ -124,9 +124,24 @@ export function convertPredictionListFromJSON(json:any):Prediction[]
       shortDescription:""
       
     };
+    createPredictionDescription(prediction,fixtureList);
     predictionList.push(prediction);
   }
   return predictionList;
+}
+
+function createPredictionDescription(prediction:Prediction,fixtureList : Array<Fixture>):void
+{
+  for(var fixture  of fixtureList)
+    {
+      if(fixture.fixtureID == prediction.fixtureID)
+      {
+        prediction.description = fixture.description;
+        prediction.shortDescription = fixture.shortDescription;
+      }
+    }
+  prediction.description +=" Home score: " + prediction.homeTeamScore + " Away score: " + prediction.awayTeamScore;
+  prediction.shortDescription +=" " + prediction.homeTeamScore + "- " + prediction.awayTeamScore;
 }
 
 export var emptyFixture : Fixture = {
