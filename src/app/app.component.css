@@ -83,3 +83,12 @@
   transform: scale(0.5); /* Scale down the spinner to fit the button */
   margin-right: 5px; /* Add some margin to the right of the spinner */
 }
+
+.submit-button-internal
+{
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}

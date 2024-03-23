@@ -16,6 +16,7 @@ import {Team,convertTeamListFromJSON,
         Fixture,convertFixtureListFromJSON,
         Prediction,convertPredictionListFromJSON, emptyFixture,}  from '../model/app.model';
 import {testTeamList,testFixtureList,testPredictionList} from '../model/testdata';
+import {WebserviceDisplayComponent} from './webservice-display/webservice-display.component';
 
 
 import { MatSelectModule } from '@angular/material/select';
@@ -36,7 +37,7 @@ import { MatCardModule } from '@angular/material/card';
     //BrowserAnimationsModule,
             FormsModule,MatButtonModule,MatIconModule,HttpClientModule,
             MatProgressSpinnerModule,MatTabsModule,MatListModule,
-            MatSelectModule,MatAutocompleteModule,MatCardModule],
+            MatSelectModule,MatAutocompleteModule,MatCardModule,WebserviceDisplayComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

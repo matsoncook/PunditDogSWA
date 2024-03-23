@@ -1,0 +1,34 @@
+.sub-header{
+
+  display: flex; 
+  /* background-color: #00bcd4;  */
+  /* justify-content: space-between; */
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+
+  justify-content: flex-end;
+}
+
+.sub-header-left {
+
+}
+
+.sub-header-right {
+   /* margin-left: auto; /* This will push the item to the right */ */
+}
+
+.done-icon {
+    color: green; /* Sets the color */
+    /* font-size: 48px; /* Sets the size */ */
+}
+
+.submit-button-internal
+{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}

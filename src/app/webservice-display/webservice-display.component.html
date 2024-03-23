@@ -1,0 +1,26 @@
+<div class="sub-header">
+  <div class="sub-header-left">
+    {{ responseShortText }}
+  </div>
+  <div class="sub-header-right">
+    <button mat-button color="primary">
+      <mat-icon *ngIf="doneCorrect" class="done-icon">done</mat-icon>
+    </button>
+  </div>
+  <div class="sub-header-right">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="doSubmit()"
+      type="submit"
+      [disabled]="isLoading"
+    >
+      <div class="submit-button-internal">
+        <mat-icon *ngIf="!isLoading">send</mat-icon>
+        <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+
+        <span>{{buttonTitle}}</span>
+      </div>
+    </button>
+  </div>
+</div>
