@@ -61,12 +61,14 @@
 }
 
 .sub-header-right {
-   /* margin-left: auto; /* This will push the item to the right */ */
+  /* This will push the item to the right */
+   /* margin-left: auto;  */
 }
 
 .done-icon {
     color: green; /* Sets the color */
-    /* font-size: 48px; /* Sets the size */ */
+    /* font-size: 48px; */
+  /* Sets the size */ 
 }
 
 .submit-button

@@ -54,7 +54,9 @@ export class AppComponent {
 
   doneCorrect = false;
   doneError = false;
+  @ViewChild('FixtureList') fixtureListComponent!: WebserviceDisplayComponent;
   @ViewChild('PredictionList') predictionListComponent!: WebserviceDisplayComponent;
+  @ViewChild('TeamList') teamListComponent!: WebserviceDisplayComponent;
   //######################################################################
 
   selectedOption: Fixture = emptyFixture;
@@ -78,14 +80,12 @@ export class AppComponent {
   constructor(private http: HttpClient) 
   {
     this.compileWebCall();
-    this.teamList = convertTeamListFromJSON(testTeamList)
-    this.fixtureList = convertFixtureListFromJSON(testFixtureList,this.teamList)
-    this.predictionList = convertPredictionListFromJSON(testPredictionList,this.fixtureList)
+    // this.teamList = convertTeamListFromJSON(testTeamList)
+    // this.fixtureList = convertFixtureListFromJSON(testFixtureList,this.teamList)
+    // this.predictionList = convertPredictionListFromJSON(testPredictionList,this.fixtureList)
   }
   predictionListFunction = () => {
-    //console.log('Called from the child component'+this);
-    //this.childOne.doSubmit();
-   
+
     this.webCall = this.webAddress + "predictionlist?code=" + this.apiCode;
     this.log("Web Service Call: \n" + this.webCall);
 
@@ -93,14 +93,40 @@ export class AppComponent {
 
       this.logResponse(JSON.stringify(data,null,2));
       this.predictionList = convertPredictionListFromJSON(data,this.fixtureList)
-      this.predictionListComponent.isLoading = false;
-      this.predictionListComponent.clearIndicatorsTimer();
+      this.predictionListComponent.success();
     }, error => {
-
       this.log( JSON.stringify(error,null,2));
-      this.predictionListComponent.isLoading = false;
-      this.predictionListComponent.responseShortText = "Error: " + error.status + " " + error.statusText;
-      this.predictionListComponent.clearIndicatorsTimer();
+      this.predictionListComponent.error( "Error: " + error.status + " " + error.statusText);
+    });
+  }
+
+  teamListFunction = () => 
+  {
+
+    this.webCall = this.webAddress + "teamlist?code=" + this.apiCode;
+    this.http.get(this.webCall).subscribe(data => {
+
+      this.logResponse(JSON.stringify(data,null,2));
+      this.teamList = convertTeamListFromJSON(data)
+      this.teamListComponent.success();
+    }, error => {
+      this.log( JSON.stringify(error,null,2));
+      this.teamListComponent.error( "Error: " + error.status + " " + error.statusText);
+    });
+
+  }
+  fixtureListFunction = () => 
+  {
+
+    this.webCall = this.webAddress + "fixturelist?code=" + this.apiCode;
+    this.http.get(this.webCall).subscribe(data => {
+
+      this.logResponse(JSON.stringify(data,null,2));
+      this.fixtureList = convertFixtureListFromJSON(data,this.teamList)
+      this.fixtureListComponent.success();
+    }, error => {
+      this.log( JSON.stringify(error,null,2));
+      this.fixtureListComponent.error( "Error: " + error.status + " " + error.statusText);
     });
   }
   onSubmit() {
@@ -230,3 +256,4 @@ export class AppComponent {
     this.webServiceResponse += "\n" + text + "\n";
   }
 }
+

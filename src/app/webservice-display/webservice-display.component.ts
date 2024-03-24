@@ -43,31 +43,15 @@ export class WebserviceDisplayComponent {
 
   }
   
-  //doSubmit()
- // {
-  //  console.log("xx");
-    // this.isLoading = true;
-    // this.parent.webCall = this.webAddress + "predictionadd";
-    // this.webCall += "?HomeTeamScore=" + this.homeTeamScore + "&AwayTeamScore=" + this.awayTeamScore + "&FixtureID=" + this.selectedOption.fixtureID;
-    // this.webCall += "&code=" + this.apiCode
-    // this.log("Web Service Call: \n" + this.webCall);
-
-    // this.http.get(this.webCall).subscribe(data => {
-
-    //   this.logResponse(JSON.stringify(data,null,2));
-    //   this.isLoading = false;
-    // }, error => {
-    //   this.doneCorrect = true;
-    //   this.log( JSON.stringify(error,null,2));
-    //   this.isLoading = false;
-    //   this.responseShortText = "Error: " + error.status + " " + error.statusText;
-    //   if(error.status == 401)
-    //   {
-    //     this.responseShortText += ". Have you entered your API Key?";
-    //   }
-    //   this.clearIndicatorsTimer();
-
-    // });
-
-  //}
+  success()
+  {
+    this.isLoading = false;
+    this.clearIndicatorsTimer();
+  }
+  error(errorText : string)
+  {
+    this.isLoading = false;
+    this.responseShortText = errorText;
+    this.clearIndicatorsTimer();
+  }
 }

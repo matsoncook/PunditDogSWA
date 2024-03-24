@@ -3,7 +3,7 @@
     <div class="header">
       <div class="header-left mat-display-5">Stephenson-Cook Webservice.</div>
       <div class="header-right">
-        <mat-spinner [diameter]="30" *ngIf="isLoading"></mat-spinner>
+       
       </div>
     </div>
   </div>
@@ -38,16 +38,17 @@
       </mat-tab>
       <mat-tab label="Teams">
         <form>
-          <div>
-            <button
+ 
+            <app-webservice-display #TeamList [buttonTitle]="'Download'"[parentFunction]="teamListFunction"></app-webservice-display>
+            <!-- <button
               mat-raised-button
               color="primary"
               (click)="teamListSubmit()"
             >
               <mat-icon>send</mat-icon>
               Download
-            </button>
-          </div>
+            </button>-->
+
           <mat-list>
             @for (team of teamList; track team) {
               <mat-list-item>
@@ -59,14 +60,15 @@
       </mat-tab>
       <mat-tab label="Fixtures">
         <form>
-          <button
+          <app-webservice-display #FixtureList [buttonTitle]="'Download'"[parentFunction]="fixtureListFunction"></app-webservice-display>
+          <!-- <button
             mat-raised-button
             color="primary"
             (click)="fixtureListSubmit()"
           >
             <mat-icon>send</mat-icon>
             Download
-          </button>
+          </button> -->
           <mat-list>
             @for (fixture of fixtureList; track fixture) {
               <mat-list-item>
