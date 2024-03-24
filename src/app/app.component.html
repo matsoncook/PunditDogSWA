@@ -78,7 +78,7 @@
       </mat-tab>
       <mat-tab label="Predictions">
         <form>
-          <app-webservice-display></app-webservice-display>
+          <app-webservice-display #PredictionList [buttonTitle]="'Download'"[parentFunction]="predictionListFunction"></app-webservice-display>
           <!-- <button
             mat-raised-button
             color="primary"

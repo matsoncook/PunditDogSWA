@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { CommonModule,} from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
@@ -54,7 +54,7 @@ export class AppComponent {
 
   doneCorrect = false;
   doneError = false;
-
+  @ViewChild('PredictionList') predictionListComponent!: WebserviceDisplayComponent;
   //######################################################################
 
   selectedOption: Fixture = emptyFixture;
@@ -82,7 +82,27 @@ export class AppComponent {
     this.fixtureList = convertFixtureListFromJSON(testFixtureList,this.teamList)
     this.predictionList = convertPredictionListFromJSON(testPredictionList,this.fixtureList)
   }
+  predictionListFunction = () => {
+    //console.log('Called from the child component'+this);
+    //this.childOne.doSubmit();
+   
+    this.webCall = this.webAddress + "predictionlist?code=" + this.apiCode;
+    this.log("Web Service Call: \n" + this.webCall);
 
+    this.http.get(this.webCall).subscribe(data => {
+
+      this.logResponse(JSON.stringify(data,null,2));
+      this.predictionList = convertPredictionListFromJSON(data,this.fixtureList)
+      this.predictionListComponent.isLoading = false;
+      this.predictionListComponent.clearIndicatorsTimer();
+    }, error => {
+
+      this.log( JSON.stringify(error,null,2));
+      this.predictionListComponent.isLoading = false;
+      this.predictionListComponent.responseShortText = "Error: " + error.status + " " + error.statusText;
+      this.predictionListComponent.clearIndicatorsTimer();
+    });
+  }
   onSubmit() {
     console.log('Form submitted');
     this. webseviceSubmit();
@@ -202,11 +222,11 @@ export class AppComponent {
 
   log(text : string)
   {
-    this.webServiceResponse += text + "\n";
+    this.webServiceResponse += "\n" + text + "\n";
   }
   logResponse(text : string)
   {
     this.log("The response is:")
-    this.webServiceResponse += text + "\n";
+    this.webServiceResponse += "\n" + text + "\n";
   }
 }
